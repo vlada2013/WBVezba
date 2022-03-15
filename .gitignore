@@ -17,5 +17,11 @@ bin-release/
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
 .idea/
+<<<<<<< HEAD
+=======
+target/test-classes/BooksApi/Books.class
+>>>>>>> develop
 target/test-classes/BooksApi/CreateOrder.class
 target/test-classes/BooksApi/GetBooks.class
+target/
+src/test/java/BooksApi/Books.java
