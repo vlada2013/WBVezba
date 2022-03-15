@@ -1,6 +1,7 @@
 package BooksApi;
 
 import common.FileReaderHelper;
+import common.PropertiesFileReaderHelper;
 import io.restassured.http.ContentType;
 import org.junit.Test;
 
@@ -10,9 +11,12 @@ import static io.restassured.RestAssured.*;
 
 public class CreateOrder {
     private FileReaderHelper fr;
+    private PropertiesFileReaderHelper pr;
 
     public CreateOrder() throws IOException {
         fr = new FileReaderHelper("payload.json");
+        pr = new PropertiesFileReaderHelper("src/test/java/BooksApi/config.properties");
+        String str = pr.Get("url");
     }
 
     @Test
@@ -33,7 +37,7 @@ public class CreateOrder {
                 .contentType(ContentType.JSON)
                 .when()
                 .body(payload)
-                .post("https://simple-books-api.glitch.me/orders");
+                .post(pr.Get("url")+"orders");
     }
 }
 
