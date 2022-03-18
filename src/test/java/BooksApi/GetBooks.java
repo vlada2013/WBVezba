@@ -1,5 +1,6 @@
 package BooksApi;
 
+import common.ResponseDataReaderHelper;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.hamcrest.Matcher;
@@ -200,6 +201,20 @@ public class GetBooks {
         assertThat(allBooksType, hasItems("fiction"));
         assertThat(booksAsString, containsString("fiction"));
         assertThat(allBooksType, containsInAnyOrder("fiction","fiction","fiction","fiction","non-fiction","non-fiction") );
+
+    }
+
+    @Test
+    public void hashMaps(){
+        ResponseDataReaderHelper rdrh = new ResponseDataReaderHelper(jsonPath);
+        String name = rdrh.name.get("Book3");
+        System.out.println(name);
+        Integer id = rdrh.id.get("Book3");
+        System.out.println(id);
+        Boolean available = rdrh.available.get("Book3");
+        System.out.println(available);
+        String type = rdrh.type.get("Book3");
+        System.out.println(type);
 
     }
 
