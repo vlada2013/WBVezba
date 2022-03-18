@@ -194,6 +194,7 @@ public class GetBooks {
         System.out.println("All Books Names : " + allBooksName);
         assertThat(allBooksName, hasSize(6));
         System.out.println("Number of all books names : " +allBooksName.size());
+
         assertThat(allBooksName, hasItems("Just as I Am"));
 
 
