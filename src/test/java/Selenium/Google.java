@@ -11,6 +11,7 @@ public class Google {
         WebDriver driver;
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+
         driver.get("https://google.com");
         String title = driver.getTitle();
         System.out.println(title);
