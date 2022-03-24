@@ -14,5 +14,7 @@ public class Test_Ivana {
         pageObject.autocompleteAction();
         pageObject.checkboxAction();
         pageObject.dropdownAction();
+        pageObject.mouseHoverAction();
+        //pageObject.closeWindow();
     }
 }
