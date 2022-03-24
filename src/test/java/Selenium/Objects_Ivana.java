@@ -6,9 +6,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import java.time.Duration;
 import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 
 public class Objects_Ivana {
 
@@ -16,7 +20,9 @@ public class Objects_Ivana {
         WebElement radioButton;
         WebElement autocomplete;
         Select dropdown;
-        WebElement checkBox ;
+        WebElement checkBox;
+        WebElement mouseHover;
+
 
     public Objects_Ivana(){
         WebDriverManager.chromedriver().setup();
@@ -27,6 +33,7 @@ public class Objects_Ivana {
         autocomplete = driver.findElement(By.id("autocomplete"));
         dropdown = new Select(driver.findElement(By.id("dropdown-class-example")));
         checkBox = driver.findElement(By.id("checkBoxOption3"));
+        mouseHover = driver.findElement(By.id("mousehover"));
     }
 
     public void titleTextCheck(){
@@ -64,5 +71,29 @@ public class Objects_Ivana {
         checkBox.click();
         Assert.assertEquals(true, checkBox.isSelected());
     }
+
+    public void mouseHoverAction() {
+        driver.manage().window().maximize();
+        Actions action = new Actions(driver); action.moveToElement(mouseHover).build().perform();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        WebElement mouseHoverElement = driver.findElement(By.className("mouse-hover-content"));
+        String text = mouseHoverElement.getText();
+        if(driver.getPageSource().contains("Top"))
+        {
+            System.out.println("Visible");
+            System.out.println(mouseHoverElement.getText());
+            assertThat(text, containsString("Top"));
+            assertThat(text, containsString("Reload"));
+        }
+        else
+        {
+            System.out.println("Not Visible");
+        }
+    }
+
+    public void closeWindow() {
+            driver.quit();
+    }
+
 }
 
